@@ -119,3 +119,5 @@ html, body {
         display: block;
     }
 }
+
+.SignInPage{@extend .RegisterPage;}

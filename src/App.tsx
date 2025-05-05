@@ -1,13 +1,15 @@
-// App.tsx
-import React from 'react'
-
+import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/HomePage'; // homepage
-import Register from './pages/Register' // register page
-
-// components
+// pages 
+import HomePage from './pages/HomePage';
+import Register from './pages/Register';
+import SignIn from './pages/Login';
+import About from './pages/About';
+import DataPolicy from './pages/DataPolicy';
+ // components 
 import Header from './components/Header';
 import Footer from './components/Footer';
+// styles
 import './styles/App.scss';
 
 const App: React.FC = () => {
@@ -15,17 +17,18 @@ const App: React.FC = () => {
     <Router>
       <Header />
       <div className="App">
-        {/* Define Routes */}
+        {/* routes are here for the site*/}
         <Routes>
-          <Route path="/pages/HomePage" element={<HomePage />} />
-          <Route path="/pages/Register" element={<Register />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<SignIn />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/data-policy" element={<DataPolicy />} />
         </Routes>
-        <Register />
-       
       </div>
       <Footer />
     </Router>
   );
-}
+};
 
 export default App;
