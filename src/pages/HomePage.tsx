@@ -1,4 +1,4 @@
-// HomePage.js
+// HomePage.tsx
 import React from 'react';
 import '../styles/App.scss';
 import Button from '../components/Button';
@@ -7,11 +7,11 @@ const HomePage = () => {
     <div className='Homepage'>
       <div className='button-container'>
         <Button 
-        label="HOMEPAGE" 
+        label="Sign in" 
         route="/" 
         />
         <Button 
-        label="HOMEPAGE" 
+        label="Sign up" 
         route="/" 
         />
       </div>
@@ -19,7 +19,7 @@ const HomePage = () => {
         User: <span style={{ color: 'red' }}>__________________</span>
       </h2>
       <h3>Tier: Free</h3>
-      <img src='/logo.png'></img>
+      <img alt='logo' src='/logo.png'></img>
 
       <div className='mapbuttoncontainer'>
       <Button 
@@ -27,7 +27,6 @@ const HomePage = () => {
         route="/" 
         />
       </div>
-      
     </div>
   );
 };

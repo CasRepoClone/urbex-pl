@@ -11,11 +11,15 @@ $tier-stalker-text: #FF1216;
 $text-font: 'Kdam Thmor Pro', sans-serif;
 
 // entire background for every page hopefully
-body {
+html, body {
     background-color: $body-background; // Replace with any hex, RGB, or named color
-    overflow: hidden; // Prevent scrolling
+    overflow: hidden;
+    height: 100%;
+    margin: 0;
 }
 
+
+    
 // header styling 
 .HeaderStyle {
     background-color: $soviet-blue;
@@ -58,7 +62,7 @@ body {
     }
     img {
         width: fit-content;
-        height: 23.56rem;
+        height: 20.56rem;
         align-self: center;
         margin: 0 auto;
         display: block;
@@ -83,4 +87,35 @@ body {
     position: absolute;
     bottom: 0;
     width: 100%;
+}
+
+
+//<input type="text" className="inputbox-rec" placeholder="Enter text here"></input>
+.inputbox-rec {
+    width: 269px;
+    height: 31px;
+    background-color: #D9D9D9;
+    border: none;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    padding: 5px 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    display: block;
+}
+
+
+.RegisterPage{
+    color: #FFFFFF;
+    text-align: center; 
+    font-family: $text-font;
+
+    img {
+        width: fit-content;
+        height: auto;
+        width: 200px;
+        align-self: center;
+        margin: 0 auto;
+        display: block;
+    }
 }
