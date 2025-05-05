@@ -1,0 +1,33 @@
+/* src/styles/App.scss */
+$background-color: #000000; // Set your desired background color
+
+html, body {
+    height: 100%;        /* Ensure both html and body take up the full height of the page */
+    margin: 0;           /* Remove any default margin */
+    display: flex;       /* Set the body as a flex container */
+    justify-content: center;  /* Center horizontally */
+    align-items: center;      /* Center vertically */
+    text-align: center;       /* Ensure text inside body is also centered */   /* Center vertically */
+    background-color: #ffffff;
+}
+
+
+/* Other global styles */
+* {
+  box-sizing: border-box;
+}
+
+
+
+p {
+    font-family: 'Courier New', Courier, monospace; /* A typewriter-style font for an urbex vibe */
+    font-size: 1.2rem; /* Slightly larger font size for readability */
+    color: #000000; /* White text for contrast against dark backgrounds */
+    text-shadow: 1px 1px 2px #b7b7b7; /* Add a subtle shadow for a gritty effect */
+}
+.logo-image{
+    
+    max-width: 90%;     /* Make sure image doesn't exceed container width */
+    max-height: 100vh;   /* Make sure image height doesn't exceed viewport height */
+    height: auto;        /* Keep the aspect ratio intact */
+}

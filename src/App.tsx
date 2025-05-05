@@ -1,24 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './styles/App.scss';  // style sheet 
 
-function App() {
+const App: React.FC = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <header className="headerdiv">
       </header>
+      <div className="logo-image-container">
+        <img src="/logo.png" alt="In Production" className="logo-image" />
+        <p>Site still in production, please come back later</p>
+      </div>
     </div>
   );
 }
