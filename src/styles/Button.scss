@@ -1,0 +1,36 @@
+$soviet-blue: #3C5A72;
+$body-background: #4F4F4F;
+$btn-back: #E5E5E5;
+$txt-red: #8B3A3A;
+$pissed-red: #FF0000;
+
+$tier-partner-text: #FFEE00;
+$tier-stalker-text: #FF1216;
+
+
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap');
+
+.UrlButton {
+    background-color: #E5E5E5;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 24px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  
+    
+    margin: 0;
+    color: #8B3A3A;
+    font-size: 16px;
+    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-weight: 500;
+
+  
+    &:hover {
+        box-shadow: 0px 3px 0px rgba(0, 0, 0, 0.25);
+
+    }
+  }
