@@ -1,4 +1,5 @@
 /* src/styles/App.scss */
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap');
 $soviet-blue: #3C5A72;
 $body-background: #4F4F4F;
 $btn-back: #E5E5E5;
@@ -7,3 +8,79 @@ $pissed-red: #FF0000;
 
 $tier-partner-text: #FFEE00;
 $tier-stalker-text: #FF1216;
+$text-font: 'Kdam Thmor Pro', sans-serif;
+
+// entire background for every page hopefully
+body {
+    background-color: $body-background; // Replace with any hex, RGB, or named color
+    overflow: hidden; // Prevent scrolling
+}
+
+// header styling 
+.HeaderStyle {
+    background-color: $soviet-blue;
+    margin: 0;
+    padding: 1rem 0;
+    top: 0;
+    width: 100%;
+    height: 3.13rem;
+    z-index: -1000;
+
+    h1 {
+        color: #FFFFFF;
+        font-family: $text-font;
+        text-align: center;
+        margin: 0;
+    }
+}
+
+.Homepage{
+    
+    .button-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10%;
+        margin-top: 2%;
+        width: 80%;
+    }
+    h2{
+        text-align: center; 
+        font-family: $text-font;
+        font-size: 125%;
+        color: #FFFFFF;
+    }
+    h3{
+        text-align: center; 
+        font-family: $text-font;
+        font-size: 125%;
+        color: #F5F226;
+    }
+    img {
+        width: fit-content;
+        height: 23.56rem;
+        align-self: center;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .mapbuttoncontainer{
+        width: fit-content;
+        align-self: center;
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+.FooterStyle{
+    background-color: $soviet-blue;
+    color: #FFFFFF;
+    text-align: center; 
+    font-family: $text-font;
+    text-decoration: underline;
+    font-size: 90%;
+
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

@@ -1,14 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap');
 $soviet-blue: #3C5A72;
 $body-background: #4F4F4F;
 $btn-back: #E5E5E5;
 $txt-red: #8B3A3A;
 $pissed-red: #FF0000;
-
+$text-font: 'Kdam Thmor Pro', sans-serif;
 $tier-partner-text: #FFEE00;
 $tier-stalker-text: #FF1216;
 
 
-@import url('https://fonts.googleapis.com/css2?family=Kdam+Thmor+Pro&display=swap');
+
 
 .UrlButton {
     background-color: #E5E5E5;
@@ -23,9 +24,9 @@ $tier-stalker-text: #FF1216;
   
     
     margin: 0;
-    color: #8B3A3A;
+    color: $txt-red;
     font-size: 16px;
-    font-family: 'Kdam Thmor Pro', sans-serif;
+    font-family: $text-font;
     font-weight: 500;
 
   
