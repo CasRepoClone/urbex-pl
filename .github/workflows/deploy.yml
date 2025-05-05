@@ -1,0 +1,54 @@
+name: Deploy to Server
+
+on:
+  push:
+    branches:
+      - main  # Trigger deploy when pushing to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Use the latest Ubuntu runner
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+      # This step checks out the repository code to the GitHub Actions runner
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'  # Specify the Node.js version you want to use
+
+    - name: Install dependencies
+      run: npm install
+      # This step installs your project dependencies using npm
+
+    - name: Build React App
+      run: npm run build
+      # This runs `npm run build`, which creates a production-ready version of your app
+
+    - name: Set up SSH
+      run: |
+        # Create .ssh directory if it doesn't exist
+        mkdir -p ~/.ssh
+        # Create the private key file from GitHub Secrets and set the correct permissions
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        # Add the server's host key to prevent SSH warnings
+        ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+        # Ensure the permissions are correct for known_hosts
+        chmod 644 ~/.ssh/known_hosts
+
+    - name: Deploy Build to Server via SCP
+      env:
+        SERVER_USER: ${{ secrets.SERVER_USER }}
+        SERVER_HOST: ${{ secrets.SERVER_HOST }}
+        SERVER_PATH: /var/www/your-app/build  # Path on your server to upload the build
+      run: |
+        # Copy the build files to a temporary directory
+        mkdir -p /tmp/build
+        cp -r build/* /tmp/build
+        # Use SCP to securely copy the files to the server
+        scp -r /tmp/build/* $SERVER_USER@$SERVER_HOST:$SERVER_PATH
+        # Clean up the temporary directory
+        rm -rf /tmp/build
