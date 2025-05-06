@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/App.scss';
+import { Link } from 'react-router-dom';
 
 // Sign In Component
 const SignIn = () => {

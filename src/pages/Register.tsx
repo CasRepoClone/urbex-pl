@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import '../styles/App.scss';
+import { Link } from 'react-router-dom';
+
 // regular expression input validation 
 const Register = () => {
   const [username, setUsername] = useState('');

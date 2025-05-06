@@ -2,6 +2,8 @@
 import React from 'react';
 import '../styles/App.scss';
 import Button from '../components/Button';
+import { Link } from 'react-router-dom';
+
 const About = () => {
   return (
     <div className='Homepage'>
