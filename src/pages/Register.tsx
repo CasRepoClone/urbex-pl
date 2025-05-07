@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import '../styles/App.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // regular expression input validation 
 const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
 
   const validateInput = () => {
     const usernameValid = /^[a-zA-Z0-9_]{3,20}$/.test(username);
@@ -32,24 +34,34 @@ const Register = () => {
     e.preventDefault();
 
     if (!validateInput()) return;
-    // modify this later on backend creation 
+
     try {
-      const response = await fetch('/api/register', {
+      const response = await fetch('http://localhost:8080/users/create', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        }, // encoded data to parse on backend side (check docs)
-        body: new URLSearchParams({
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           username,
           email,
-          password,
-        }).toString(),
-      }); // account creation validation by email can be done later 
+          hashPwd: password,
+        }),
+      });
 
-      const result = await response.json();
-      alert(result.message || "Registration submitted.");
+      console.log('Response Status:', response.status);
+
+      // Handle plain text response
+      const result = await response.text();
+      console.log('Response Body:', result);
+
+      if (!response.ok) {
+        alert(result || "Error occurred during registration.");
+        return;
+      }
+      navigate('/'); // Redirect to the desired page after successful login
+      alert(result || "Registration submitted.");
     } catch (error) {
-      console.error('Error submitting form:', error); // this will throw until backend is working 
+      console.error('Error submitting form:', error);
       alert("There was a problem submitting the form.");
     }
   };

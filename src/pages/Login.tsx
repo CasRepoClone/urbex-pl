@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import '../styles/App.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // Sign In Component
 const SignIn = () => {
-  const [email, setEmail] = useState('');
+  const navigate = useNavigate();
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const validateInput = () => {
-    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    const usernameValid = /^[a-zA-Z0-9_]{3,20}$/.test(username);
     const passwordValid = password.length >= 6;
 
-    if (!emailValid) {
-      alert("Invalid email format.");
+    if (!usernameValid) {
+      alert("Invalid username format.");
       return false;
     }
     if (!passwordValid) {
@@ -26,24 +27,51 @@ const SignIn = () => {
     e.preventDefault();
 
     if (!validateInput()) return;
-    // LOGIN API POST 
-    try {
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body: new URLSearchParams({
-          email,
-          password,
-        }).toString(),
-      });
 
-      const result = await response.json();
-      alert(result.message || "Sign-in submitted.");
+    try {
+        const sanitizeInput = (input: string) => {
+            return input.replace(/[<>&"'`]/g, (char) => {
+                const charMap: { [key: string]: string } = {
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    '&': '&amp;',
+                    '"': '&quot;',
+                    "'": '&#x27;',
+                    '`': '&#x60;',
+                };
+                return charMap[char] || char;
+            });
+        };
+
+        const sanitizedUsername = sanitizeInput(username.trim());
+        const sanitizedPassword = sanitizeInput(password.trim());
+
+        const response = await fetch('http://localhost:8080/users/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                username: sanitizedUsername, // Assuming "username" is used as the identifier
+                password: sanitizedPassword,
+            }).toString(),
+        });
+
+        const result = await response.text(); // Parse the response as plain text
+        if (!response.ok) {
+            alert(result || "Login failed. Please check your credentials.");
+            return;
+        }
+
+        // Store the session token and username in sessionStorage
+        sessionStorage.setItem('authToken', 'Logged-in'); // Replace 'Logged-in' with actual token if backend provides it
+        sessionStorage.setItem('username', sanitizedUsername);
+
+        alert(result || "Login successful!");
+        navigate('/'); // Redirect to the desired page after successful login
     } catch (error) {
-      console.error('Error submitting form:', error);
-      alert("There was a problem submitting the form.");
+        console.error('Error submitting form:', error);
+        alert("There was a problem submitting the form.");
     }
   };
 
@@ -54,13 +82,13 @@ const SignIn = () => {
         <br />
       </div>
       <form className='signInForm' onSubmit={handleSubmit}>
-        <p>Email</p>
+        <p>Username</p>
         <input
           type="text"
-          className="inputbox-rec emailInput_signin"
-          placeholder="Enter email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          className="inputbox-rec usernameInput_signin"
+          placeholder="Enter username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
         <p>Password</p>
         <input

@@ -5,6 +5,8 @@ import Button from '../components/Button';
 import { Link } from 'react-router-dom';
 
 const Subscriptions = () => {
+
+    alert("this page is not yet implemented also there is a free tier, I just forgot to add it, sorry");
   return (
     <>
     <div className='SubPage'>

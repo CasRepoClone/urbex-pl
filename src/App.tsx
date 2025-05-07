@@ -18,7 +18,7 @@ import Footer from './components/Footer';
 // security (AuthContext, ProtectedRoute)
 import { AuthProvider } from './security/AuthContext';  // Import AuthProvider
 import ProtectedRoute from './security/ProtectedRoute';  // Using the capitalized "R"
-
+import PublicRoute from './security/PublicRoute';  // Using the capitalized "R"
 
 // styles
 import './styles/App.scss';
@@ -40,21 +40,21 @@ const App: React.FC = () => {
             <Route
               path="/subscribe"
               element={
-                <ProtectedRoute>
+                <PublicRoute>
                   <Subscriptions />
-                </ProtectedRoute>
+                </PublicRoute>
               }
             />
 
             {/* Protected Route for Profile Page */}
             <Route
-              path="/profile"
-              element={
-                <ProtectedRoute>
-                  <ProfilePage />
-                </ProtectedRoute>
-              }
-            />
+            path="/subscribe"
+            element={
+              <PublicRoute>
+                <Subscriptions />
+              </PublicRoute>
+            }
+          />
           </Routes>
         </div>
         <Footer />
