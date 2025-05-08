@@ -36,7 +36,7 @@ const Register = () => {
     if (!validateInput()) return;
 
     try {
-      const response = await fetch('http://localhost:8080/users/create', {
+      const response = await fetch('http://urbex-pl.com:8080/users/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

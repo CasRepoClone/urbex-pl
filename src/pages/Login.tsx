@@ -46,7 +46,7 @@ const SignIn = () => {
         const sanitizedUsername = sanitizeInput(username.trim());
         const sanitizedPassword = sanitizeInput(password.trim());
 
-        const response = await fetch('http://localhost:8080/users/login', {
+        const response = await fetch('http://urbex-pl.com:8080/users/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
