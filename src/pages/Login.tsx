@@ -67,6 +67,7 @@ const SignIn = () => {
         sessionStorage.setItem('authToken', 'Logged-in'); // Replace 'Logged-in' with actual token if backend provides it
         sessionStorage.setItem('username', sanitizedUsername);
 
+
         alert(result || "Login successful!");
         navigate('/'); // Redirect to the desired page after successful login
     } catch (error) {

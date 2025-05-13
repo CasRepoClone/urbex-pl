@@ -11,12 +11,13 @@ const Payment = () => {
     setLoading(true);
 
     try {
+ 
       const response = await fetch(`${endpoint}/api/stripe/create-checkout-session`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, name }),
+        body: JSON.stringify({ email, name}),
       });
 
       const data = await response.json();
