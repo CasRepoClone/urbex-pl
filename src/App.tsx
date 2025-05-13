@@ -10,7 +10,7 @@ import About from './pages/About';
 import DataPolicy from './pages/DataPolicy';
 import Subscriptions from './pages/Subscriptions';
 import ProfilePage from './pages/ProfilePage'
-
+import Payment from './pages/Payment';
 // components 
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -30,7 +30,7 @@ const App: React.FC = () => {
         <Header />
         <div className="App">
           <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<Payment />} />  {/* change to HomePage on production */}
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/about" element={<About />} />
