@@ -59,6 +59,7 @@ const Subscriptions = () => {
       if (data.url) {
         window.location.href = data.url; // Redirect to Stripe Checkout
       } else {
+        alert('please double check your email');
         throw new Error('No checkout URL received');
       }
     } catch (error) {
@@ -88,6 +89,7 @@ const Subscriptions = () => {
               <p>monthly payment of 30pln
                 Unlimited spots + preview images + secret spots
                 Ability to add areas of interest
+                This is not added yet, but will be in the future
               </p>
               <button
                 className='inputbox-rec'

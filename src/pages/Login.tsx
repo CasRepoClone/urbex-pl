@@ -49,14 +49,15 @@ const SignIn = () => {
         const sanitizedPassword = sanitizeInput(password.trim());
 
         const response = await fetch(`${siteUrl}/users/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: new URLSearchParams({
-                username: sanitizedUsername, // Assuming "username" is used as the identifier
-                password: sanitizedPassword,
-            }).toString(),
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams({
+            username: sanitizedUsername,
+            password: sanitizedPassword,
+          }).toString(),
+          credentials: 'include', // <-- This is required for cookies/session!
         });
 
         const result = await response.text(); // Parse the response as plain text
