@@ -30,7 +30,7 @@ const App: React.FC = () => {
         <Header />
         <div className="App">
           <Routes>
-            <Route path="/" element={<Payment />} />  {/* change to HomePage on production */}
+            <Route path="/" element={<HomePage />} />  {/* change to HomePage on production */}
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/about" element={<About />} />

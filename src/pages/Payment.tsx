@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../styles/App.scss';
 
 const Payment = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
+  const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
-  const endpoint = 'http://localhost:8080';
+
+  useEffect(() => {
+    const storedUsername = sessionStorage.getItem('username');
+    if (storedUsername) setUsername(storedUsername);
+  }, []);
+
+  const endpoint = 'https://urbex-pl.com';
+  const subscription_plan_id = "1"; // Set this to the correct plan ID for the user/selection
+
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     setLoading(true);
 
     try {
- 
       const response = await fetch(`${endpoint}/api/stripe/create-checkout-session`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, name}),
+        body: JSON.stringify({ email, name, username, subscription_plan_id }),
       });
 
       const data = await response.json();
@@ -54,6 +62,12 @@ const Payment = () => {
           onChange={(e) => setName(e.target.value)}
           required
         />
+        {/* Optionally show the username if available */}
+        {username && (
+          <div>
+            <label>Username: {username}</label>
+          </div>
+        )}
         <button type="submit" disabled={loading}>
           {loading ? 'Processing...' : 'Checkout'}
         </button>
