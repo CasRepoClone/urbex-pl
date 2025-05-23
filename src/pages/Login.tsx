@@ -31,51 +31,50 @@ const SignIn = () => {
     if (!validateInput()) return;
 
     try {
-        const sanitizeInput = (input: string) => {
-            return input.replace(/[<>&"'`]/g, (char) => {
-                const charMap: { [key: string]: string } = {
-                    '<': '&lt;',
-                    '>': '&gt;',
-                    '&': '&amp;',
-                    '"': '&quot;',
-                    "'": '&#x27;',
-                    '`': '&#x60;',
-                };
-                return charMap[char] || char;
-            });
-        };
-
-        const sanitizedUsername = sanitizeInput(username.trim());
-        const sanitizedPassword = sanitizeInput(password.trim());
-
-        const response = await fetch(`${siteUrl}/users/login`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: new URLSearchParams({
-            username: sanitizedUsername,
-            password: sanitizedPassword,
-          }).toString(),
-          credentials: 'include', // <-- This is required for cookies/session!
+      const sanitizeInput = (input: string) => {
+        return input.replace(/[<>&"'`]/g, (char) => {
+          const charMap: { [key: string]: string } = {
+            '<': '&lt;',
+            '>': '&gt;',
+            '&': '&amp;',
+            '"': '&quot;',
+            "'": '&#x27;',
+            '`': '&#x60;',
+          };
+          return charMap[char] || char;
         });
+      };
 
-        const result = await response.text(); // Parse the response as plain text
-        if (!response.ok) {
-            alert(result || "Login failed. Please check your credentials.");
-            return;
-        }
+      const sanitizedUsername = sanitizeInput(username.trim());
+      const sanitizedPassword = sanitizeInput(password.trim());
 
-        // Store the session token and username in sessionStorage
-        sessionStorage.setItem('authToken', 'Logged-in'); // Replace 'Logged-in' with actual token if backend provides it
-        sessionStorage.setItem('username', sanitizedUsername);
+      const response = await fetch(`${siteUrl}/users/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({
+          username: sanitizedUsername,
+          password: sanitizedPassword,
+        }).toString(),
+        credentials: 'include',
+      });
 
+      const result = await response.json();
+      if (!response.ok) {
+        alert(result.message || "Login failed. Please check your credentials.");
+        return;
+      }
 
-        alert(result || "Login successful!");
-        navigate('/'); // Redirect to the desired page after successful login
+      sessionStorage.setItem('authToken', 'Logged-in');
+      sessionStorage.setItem('username', sanitizedUsername);
+      sessionStorage.setItem('email', result.email); // <-- Store email
+
+      alert(result.message || "Login successful!");
+      navigate('/');
     } catch (error) {
-        console.error('Error submitting form:', error);
-        alert("There was a problem submitting the form.");
+      console.error('Error submitting form:', error);
+      alert("There was a problem submitting the form.");
     }
   };
 
