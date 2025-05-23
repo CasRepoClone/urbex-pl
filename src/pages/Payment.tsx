@@ -12,7 +12,8 @@ const Payment = () => {
     if (storedUsername) setUsername(storedUsername);
   }, []);
 
-  const endpoint = 'https://urbex-pl.com';
+  const endpoint = process.env.REACT_APP_API_URL;
+
   const subscription_plan_id = "1"; // Set this to the correct plan ID for the user/selection
 
   const handleSubmit = async (event: React.FormEvent) => {

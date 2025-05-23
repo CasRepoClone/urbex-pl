@@ -3,7 +3,7 @@ import '../styles/App.scss';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
 
-const endpoint = 'https://urbex-pl.com';
+const endpoint = process.env.REACT_APP_API_URL;
 
 const Subscriptions = () => {
   const [email, setEmail] = useState('');

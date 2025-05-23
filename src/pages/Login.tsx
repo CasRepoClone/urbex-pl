@@ -7,6 +7,8 @@ const SignIn = () => {
   const navigate = useNavigate();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  // hostname for dev/testing changes 
+  const siteUrl = process.env.REACT_APP_API_URL;
 
   const validateInput = () => {
     const usernameValid = /^[a-zA-Z0-9_]{3,20}$/.test(username);
@@ -46,7 +48,7 @@ const SignIn = () => {
         const sanitizedUsername = sanitizeInput(username.trim());
         const sanitizedPassword = sanitizeInput(password.trim());
 
-        const response = await fetch('http://urbex-pl.com:8080/users/login', {
+        const response = await fetch(`${siteUrl}/users/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
