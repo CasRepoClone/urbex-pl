@@ -32,9 +32,7 @@ const HomePage = () => {
             <Button
               label="Account"
               // route="/account" // Route to the account page
-              onClick={() => {
-                alert("Not yet implemented im sorry") // Clear the username state
-              }}
+              route="/ProfilePage"
             />
           </>
         ) : (

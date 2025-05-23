@@ -10,14 +10,13 @@ import About from './pages/About';
 import DataPolicy from './pages/DataPolicy';
 import Subscriptions from './pages/Subscriptions';
 import ProfilePage from './pages/ProfilePage'
-import Payment from './pages/Payment';
+
 // components 
 import Header from './components/Header';
 import Footer from './components/Footer';
 
 // security (AuthContext, ProtectedRoute)
 import { AuthProvider } from './security/AuthContext';  // Import AuthProvider
-import ProtectedRoute from './security/ProtectedRoute';  // Using the capitalized "R"
 import PublicRoute from './security/PublicRoute';  // Using the capitalized "R"
 
 // styles
@@ -35,6 +34,7 @@ const App: React.FC = () => {
             <Route path="/login" element={<SignIn />} />
             <Route path="/about" element={<About />} />
             <Route path="/data-policy" element={<DataPolicy />} />
+            <Route path="/ProfilePage" element={<ProfilePage />} />
 
             {/* Protected Route for Subscriptions */}
             <Route
