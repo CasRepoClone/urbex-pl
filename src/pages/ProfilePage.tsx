@@ -22,6 +22,7 @@ const handleButtonClick = (action: 'SUBSCRIPTION' | 'changePassword' | 'requestD
     case 'CancelSubscription':
       window.open('https://billing.stripe.com/p/login/8wM7ux2xG7fY2ysdQQ', '_blank');
       break;
+    
       
     case 'Home':
     default:
