@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../styles/App.scss';
 import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../security/AuthContext';
 
-// Sign In Component
+
 const SignIn = () => {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  // hostname for dev/testing changes 
-  const siteUrl = process.env.REACT_APP_API_URL;
 
   const validateInput = () => {
     const usernameValid = /^[a-zA-Z0-9_]{3,20}$/.test(username);
@@ -48,7 +48,7 @@ const SignIn = () => {
       const sanitizedUsername = sanitizeInput(username.trim());
       const sanitizedPassword = sanitizeInput(password.trim());
 
-      const response = await fetch(`${siteUrl}/users/login`, {
+      const response = await fetch(`/users/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -66,9 +66,22 @@ const SignIn = () => {
         return;
       }
 
+      // Fetch subscription status from backend
+      const subRes = await fetch(`/users/checkSubscription?email=${encodeURIComponent(result.email)}`, {
+        credentials: 'include',
+      });
+      const subscribed = (await subRes.text()) === 'true';
+
+      // Update context
+      login({
+        username: sanitizedUsername,
+        email: result.email,
+        subscribed,
+      });
+
       sessionStorage.setItem('authToken', 'Logged-in');
       sessionStorage.setItem('username', sanitizedUsername);
-      sessionStorage.setItem('email', result.email); // <-- Store email
+      sessionStorage.setItem('email', result.email);
 
       alert(result.message || "Login successful!");
       navigate('/');

@@ -3,7 +3,7 @@ import '../styles/App.scss';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
 
-const endpoint = process.env.REACT_APP_API_URL;
+
 
 const Subscriptions = () => {
   const [email, setEmail] = useState('');
@@ -46,7 +46,7 @@ const Subscriptions = () => {
     setShowEmailPopup(false);
 
     try {
-      const response = await fetch(`${endpoint}/api/stripe/create-checkout-session`, {
+      const response = await fetch(`/api/stripe/create-checkout-session`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

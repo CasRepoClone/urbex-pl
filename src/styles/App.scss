@@ -18,7 +18,13 @@ html, body {
     margin: 0;
 }
 
-
+.Logoimagefix {
+    width: auto;
+    max-width: 400px; // or whatever max you want
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
     
 // header styling 
 .HeaderStyle {

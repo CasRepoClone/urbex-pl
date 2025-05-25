@@ -55,7 +55,16 @@ const HomePage = () => {
         </h2>
       </Link>
       <h3>Tier: Free</h3>
-      <img alt='logo' src='/logo.png'></img>
+      <img
+        alt='logo'
+        src='/logo.png'
+        style={{
+          width: '200px',
+          height: '200px',
+          maxWidth: '100%',
+        }}
+        className="responsive-logo"
+      />
 
       {/*need to validate user is logged in first */}
       <div className='mapbuttoncontainer'>

@@ -10,8 +10,7 @@ import About from './pages/About';
 import DataPolicy from './pages/DataPolicy';
 import Subscriptions from './pages/Subscriptions';
 import ProfilePage from './pages/ProfilePage'
-
-// components 
+import Map from './pages/Map';
 import Header from './components/Header';
 import Footer from './components/Footer';
 
