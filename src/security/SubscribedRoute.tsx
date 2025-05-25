@@ -1,21 +1,16 @@
-import React, { useContext, ReactNode } from 'react';
+import React, { useContext, ReactNode, ReactElement } from 'react';
 import { Navigate } from 'react-router-dom';
-import { AuthContext } from './AuthContext';
+import { useAuth } from './AuthContext';
 
-const SubscribedRoute = ({ children }: { children: ReactNode }) => {
-  const context = useContext(AuthContext);
+const SubscribedRoute = ({ children }: { children: ReactElement }) => {
+  const { user, isAuthenticated } = useAuth();
 
-  if (!context || !context.user) {
-    // Not logged in
+  if (!isAuthenticated) {
     return <Navigate to="/login" replace />;
   }
-
-  if (!context.user.subscribed) {
-    // Not subscribed
+  if (!user?.subscribed) {
     return <Navigate to="/subscribe" replace />;
   }
-
-  // Subscribed user
   return children;
 };
 

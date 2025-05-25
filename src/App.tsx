@@ -13,6 +13,8 @@ import ProfilePage from './pages/ProfilePage'
 import Map from './pages/Map';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import SubscribedRoute from './security/SubscribedRoute';
+import SubscribeRoute from './security/SubscribeRoute';
 
 // security (AuthContext, ProtectedRoute)
 import { AuthProvider } from './security/AuthContext';  // Import AuthProvider
@@ -39,21 +41,22 @@ const App: React.FC = () => {
             <Route
               path="/subscribe"
               element={
-                <PublicRoute>
+                <SubscribeRoute>
                   <Subscriptions />
-                </PublicRoute>
+                </SubscribeRoute>
               }
             />
 
-            {/* Protected Route for Profile Page */}
             <Route
-            path="/subscribe"
-            element={
-              <PublicRoute>
-                <Subscriptions />
-              </PublicRoute>
-            }
-          />
+              path="/map"
+              element={
+                <SubscribedRoute>
+                  <Map />
+                </SubscribedRoute>
+              }
+            />
+
+            
           </Routes>
         </div>
         <Footer />

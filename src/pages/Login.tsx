@@ -66,12 +66,19 @@ const SignIn = () => {
         return;
       }
 
-      // Fetch subscription status from backend
-      const subRes = await fetch(`/users/checkSubscription?email=${encodeURIComponent(result.email)}`, {
+      // Fetch subscription status from backend]
+      // should already be allowed in nginx config 
+      const subRes = await fetch('/users/checkSubscription', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams({ email: result.email }).toString(),
         credentials: 'include',
       });
-      const subscribed = (await subRes.text()) === 'true';
-
+      const subscriptionStatus = await subRes.text();
+      // check subscription is not empty string or 0 without converting to int
+      const subscribed = subscriptionStatus === '1' || subscriptionStatus === '2' || subscriptionStatus === '3';
       // Update context
       login({
         username: sanitizedUsername,
