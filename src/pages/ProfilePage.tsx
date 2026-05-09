@@ -30,11 +30,11 @@ const ProfilePage = () => {
         <div className="profile-fields">
           <div className="profile-field">
             <label>Username</label>
-            <span className="inputbox-rec label-box">{username}</span>
+            <span className="display-field">{username}</span>
           </div>
           <div className="profile-field">
             <label>Email</label>
-            <span className="inputbox-rec label-box">Not available locally</span>
+            <span className="display-field">Not available locally</span>
           </div>
         </div>
         <div className="account-actions">

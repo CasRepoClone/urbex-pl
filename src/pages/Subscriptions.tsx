@@ -16,8 +16,7 @@ const Subscriptions = () => {
     if (storedUsername) setUsername(storedUsername);
   }, []);
 
-  const openEmailPopup = (planId: string, event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
+  const openEmailPopup = (planId: string) => {
     setPendingPlanId(planId);
     setShowEmailPopup(true);
   };
@@ -73,7 +72,7 @@ const Subscriptions = () => {
         <section className="subscription-panel">
           <p className="form-kicker">Access tiers</p>
           <h1>Choose your field kit.</h1>
-          {username && <span className="tier-chip">Username: {username}</span>}
+          {username && <span className="tier-chip" aria-label="Signed-in username">Username: {username}</span>}
           <form>
             <div className="subscription-grid">
               <article className="subscription-card">
@@ -86,7 +85,7 @@ const Subscriptions = () => {
                   type="button"
                   className="UrlButton"
                   disabled={loading}
-                  onClick={(e) => openEmailPopup('2', e)}
+                  onClick={() => openEmailPopup('2')}
                 >
                   {loading ? 'Processing...' : 'Subscribe as S.T.A.L.K.E.R'}
                 </button>
@@ -101,7 +100,7 @@ const Subscriptions = () => {
                   type="button"
                   className="UrlButton secondary"
                   disabled={loading}
-                  onClick={(e) => openEmailPopup('1', e)}
+                  onClick={() => openEmailPopup('1')}
                 >
                   {loading ? 'Processing...' : 'Subscribe as Wolnosc Enjoyer'}
                 </button>

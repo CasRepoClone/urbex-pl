@@ -101,7 +101,7 @@ const Register = () => {
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
-          <input type="submit" value="Send request" className="UrlButton" />
+          <button type="submit" className="UrlButton">Send request</button>
         </form>
         <img alt="urbex-pl logo" src="/logo.png" />
       </section>

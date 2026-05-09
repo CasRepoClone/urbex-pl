@@ -13,7 +13,7 @@ const Payment = () => {
   }, []);
 
   const endpoint = 'https://urbex-pl.com';
-  const subscription_plan_id = '1';
+  const subscriptionPlanId = '1';
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -25,7 +25,7 @@ const Payment = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email, name, username, subscription_plan_id }),
+        body: JSON.stringify({ email, name, username, subscription_plan_id: subscriptionPlanId }),
       });
 
       const data = await response.json();

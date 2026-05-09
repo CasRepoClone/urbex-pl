@@ -102,8 +102,8 @@ const SignIn = () => {
             />
           </div>
           <div className="form-actions">
-            <input type="submit" value="Sign in" className="UrlButton" />
-            <button type="button" className="UrlButton secondary forgotPassword">Forgot password</button>
+            <button type="submit" className="UrlButton">Sign in</button>
+            <button type="button" className="UrlButton secondary forgotPassword" onClick={() => alert('Password recovery is not yet available.')}>Forgot password</button>
           </div>
         </form>
         <img alt="urbex-pl logo" src="/logo.png" />

@@ -12,7 +12,7 @@ import Payment from './pages/Payment';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import { AuthProvider } from './security/AuthContext';
-import PublicRoute from './security/PublicRoute';
+import AuthenticatedRoute from './security/AuthenticatedRoute';
 import './styles/App.scss';
 
 const App: React.FC = () => {
@@ -30,25 +30,25 @@ const App: React.FC = () => {
             <Route
               path="/profile"
               element={
-                <PublicRoute>
+                <AuthenticatedRoute>
                   <ProfilePage />
-                </PublicRoute>
+                </AuthenticatedRoute>
               }
             />
             <Route
               path="/payment"
               element={
-                <PublicRoute>
+                <AuthenticatedRoute>
                   <Payment />
-                </PublicRoute>
+                </AuthenticatedRoute>
               }
             />
             <Route
               path="/subscribe"
               element={
-                <PublicRoute>
+                <AuthenticatedRoute>
                   <Subscriptions />
-                </PublicRoute>
+                </AuthenticatedRoute>
               }
             />
           </Routes>
