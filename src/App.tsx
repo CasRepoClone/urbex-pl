@@ -27,8 +27,22 @@ const App: React.FC = () => {
             <Route path="/login" element={<SignIn />} />
             <Route path="/about" element={<About />} />
             <Route path="/data-policy" element={<DataPolicy />} />
-            <Route path="/profile" element={<ProfilePage />} />
-            <Route path="/payment" element={<Payment />} />
+            <Route
+              path="/profile"
+              element={
+                <PublicRoute>
+                  <ProfilePage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="/payment"
+              element={
+                <PublicRoute>
+                  <Payment />
+                </PublicRoute>
+              }
+            />
             <Route
               path="/subscribe"
               element={

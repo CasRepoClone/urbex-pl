@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import '../styles/App.scss';
 import { useNavigate } from 'react-router-dom';
 
 const ProfilePage = () => {
   const navigate = useNavigate();
+  const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    setUsername(sessionStorage.getItem('username') || 'Signed-in user');
+  }, []);
 
   const handleButtonClick = (action: 'SUBSCRIPTION' | 'changePassword' | 'requestDeletion' | 'CancelSubscription' | 'Home') => {
     if (action === 'SUBSCRIPTION') {
@@ -25,11 +30,11 @@ const ProfilePage = () => {
         <div className="profile-fields">
           <div className="profile-field">
             <label>Username</label>
-            <span className="inputbox-rec label-box">user@gmail.com</span>
+            <span className="inputbox-rec label-box">{username}</span>
           </div>
           <div className="profile-field">
             <label>Email</label>
-            <span className="inputbox-rec label-box">user@gmail.com</span>
+            <span className="inputbox-rec label-box">Not available locally</span>
           </div>
         </div>
         <div className="account-actions">
