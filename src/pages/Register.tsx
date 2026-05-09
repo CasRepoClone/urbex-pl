@@ -83,7 +83,7 @@ const Register = () => {
             <label htmlFor="register-email">Email</label>
             <input
               id="register-email"
-              type="text"
+              type="email"
               className="inputbox-rec emailInput_reg"
               placeholder="name@example.com"
               value={email}

@@ -34,7 +34,7 @@ const ProfilePage = () => {
           </div>
           <div className="profile-field">
             <label>Email</label>
-            <span className="display-field">Not available locally</span>
+            <span className="display-field">Email retrieval not implemented</span>
           </div>
         </div>
         <div className="account-actions">

@@ -5,7 +5,7 @@ const endpoint = 'https://urbex-pl.com';
 
 const Subscriptions = () => {
   const [email, setEmail] = useState('');
-  const [confirmEmail, setConfirmEmail] = useState('');
+  const [emailConfirmation, setEmailConfirmation] = useState('');
   const [username, setUsername] = useState('');
   const [loading, setLoading] = useState(false);
   const [showEmailPopup, setShowEmailPopup] = useState(false);
@@ -22,11 +22,11 @@ const Subscriptions = () => {
   };
 
   const handleSubscribe = async () => {
-    if (!email || !confirmEmail) {
+    if (!email || !emailConfirmation) {
       alert('Please enter and confirm your email.');
       return;
     }
-    if (email !== confirmEmail) {
+    if (email !== emailConfirmation) {
       alert('Emails do not match.');
       return;
     }
@@ -61,7 +61,7 @@ const Subscriptions = () => {
     } finally {
       setLoading(false);
       setEmail('');
-      setConfirmEmail('');
+      setEmailConfirmation('');
       setPendingPlanId(null);
     }
   };
@@ -126,8 +126,8 @@ const Subscriptions = () => {
               type="email"
               className="inputbox-rec"
               placeholder="Confirm your email"
-              value={confirmEmail}
-              onChange={(e) => setConfirmEmail(e.target.value)}
+              value={emailConfirmation}
+              onChange={(e) => setEmailConfirmation(e.target.value)}
               required
             />
             <div className="form-actions">
