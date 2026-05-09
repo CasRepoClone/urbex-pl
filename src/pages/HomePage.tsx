@@ -1,74 +1,62 @@
-// HomePage.tsx
-import React, { useState, useEffect } from 'react'; // Import useState and useEffect
+import React, { useState, useEffect } from 'react';
 import '../styles/App.scss';
 import Button from '../components/Button';
 import { Link } from 'react-router-dom';
 
-
 const HomePage = () => {
-
   const [username, setUsername] = useState<string | null>(null);
 
-  // Retrieve the username from sessionStorage on component load
   useEffect(() => {
     const storedUsername = sessionStorage.getItem('username');
     setUsername(storedUsername);
   }, []);
 
-
   return (
-    <div className='Homepage'>
-      <div className='button-container'>
-        {username ? (
-          // If the user is logged in, show a "Log out" button and an "Account" button
-          <>
-            <Button
-              label="Log out"
-              onClick={() => {
-                sessionStorage.removeItem('username'); // Remove username from sessionStorage
-                setUsername(null); // Clear the username state
-              }}
-            />
-            <Button
-              label="Account"
-              // route="/account" // Route to the account page
-              onClick={() => {
-                alert("Not yet implemented im sorry") // Clear the username state
-              }}
-            />
-          </>
-        ) : (
-          // If the user is not logged in, show "Sign in" and "Sign up" buttons
-          <>
-            <Button
-              label="Sign in"
-              route="/login" // Route to the login page
-            />
-            <Button
-              label="Sign up"
-              route="/register" // Route to the registration page
-            />
-          </>
-        )}
-      </div>
-      <Link to="/profile" style={{ textDecoration: 'none', color: 'inherit' }}>
-        <h2>
-          <span style={{ color: 'red' }}>{username ? username : 'NOT LOGGED IN!'}</span>
-        </h2>
-      </Link>
-      <h3>Tier: Free</h3>
-      <img alt='logo' src='/logo.png'></img>
-
-      {/*need to validate user is logged in first */}
-      <div className='mapbuttoncontainer'>
-        <Button
-          label="GO TO THE MAP"
-          route="/subscribe"
-        />
-      </div>
+    <div className="Homepage">
+      <section className="hero-panel">
+        <div className="hero-copy">
+          <p className="eyebrow">Poland field archive</p>
+          <h2>Clean routes into forgotten places.</h2>
+          <p>
+            Discover documented abandoned locations with a calmer, map-first experience built for responsible urban exploration.
+          </p>
+          <div className="button-container">
+            {username ? (
+              <>
+                <Button
+                  label="Log out"
+                  onClick={() => {
+                    sessionStorage.removeItem('username');
+                    setUsername(null);
+                  }}
+                />
+                <Button
+                  label="Account"
+                  route="/profile"
+                />
+              </>
+            ) : (
+              <>
+                <Button label="Sign in" route="/login" />
+                <Button label="Sign up" route="/register" />
+              </>
+            )}
+          </div>
+          <div className="user-strip">
+            <span className="status-label">Status</span>
+            <Link to="/profile">{username ? username : 'Guest access'}</Link>
+            <span className="tier-chip">Tier: Free</span>
+          </div>
+          <div className="mapbuttoncontainer">
+            <Button label="Go to the map" route="/subscribe" />
+          </div>
+        </div>
+        <div className="hero-art" aria-label="urbex-pl visual identity">
+          <img alt="urbex-pl logo" src="/logo.png" />
+        </div>
+      </section>
     </div>
   );
 };
 
 export default HomePage;
-

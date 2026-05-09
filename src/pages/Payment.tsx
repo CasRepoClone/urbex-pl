@@ -13,7 +13,7 @@ const Payment = () => {
   }, []);
 
   const endpoint = 'https://urbex-pl.com';
-  const subscription_plan_id = "1"; // Set this to the correct plan ID for the user/selection
+  const subscription_plan_id = '1';
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -31,7 +31,7 @@ const Payment = () => {
       const data = await response.json();
 
       if (data.url) {
-        window.location.href = data.url; // Redirect to Stripe Checkout
+        window.location.href = data.url;
       } else {
         throw new Error('No checkout URL received');
       }
@@ -45,33 +45,39 @@ const Payment = () => {
 
   return (
     <div className="payment-container">
-      <form id="checkout-form" onSubmit={handleSubmit}>
-        <input
-          type="email"
-          id="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="text"
-          id="name"
-          placeholder="Enter your name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
-        {/* Optionally show the username if available */}
-        {username && (
-          <div>
-            <label>Username: {username}</label>
+      <section className="payment-panel">
+        <p className="form-kicker">Checkout</p>
+        <h2>Finish access.</h2>
+        <p>Confirm your details before moving to secure Stripe checkout.</p>
+        <form id="checkout-form" onSubmit={handleSubmit}>
+          <div className="field-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
           </div>
-        )}
-        <button type="submit" disabled={loading}>
-          {loading ? 'Processing...' : 'Checkout'}
-        </button>
-      </form>
+          <div className="field-group">
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              placeholder="Enter your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              required
+            />
+          </div>
+          {username && <span className="tier-chip">Username: {username}</span>}
+          <button className="UrlButton" type="submit" disabled={loading}>
+            {loading ? 'Processing...' : 'Checkout'}
+          </button>
+        </form>
+      </section>
     </div>
   );
 };

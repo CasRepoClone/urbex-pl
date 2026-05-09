@@ -1,54 +1,45 @@
-// HomePage.tsx
 import React from 'react';
 import '../styles/App.scss';
-import Button from '../components/Button';
-import { Link } from 'react-router-dom';
-
-// for the backend (to be built)
-const handleButtonClick = (action: 'SUBSCRIPTION' | 'changePassword' | 'requestDeletion' | 'CancelSubscription' | 'Home') => {
-  switch (action) {
-    case 'SUBSCRIPTION':
-      // save logic
-      break;
-    case 'changePassword':
-      // delete logic
-      break;
-    case 'requestDeletion':
-      // edit logic
-      break;
-    case 'CancelSubscription':
-      // edit logic
-      break;
-    case 'Home':
-      // edit logic
-      break;
-    default:
-      break;
-  }
-};
+import { useNavigate } from 'react-router-dom';
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+
+  const handleButtonClick = (action: 'SUBSCRIPTION' | 'changePassword' | 'requestDeletion' | 'CancelSubscription' | 'Home') => {
+    if (action === 'SUBSCRIPTION') {
+      navigate('/subscribe');
+      return;
+    }
+    if (action === 'Home') {
+      navigate('/');
+      return;
+    }
+    alert('Not yet implemented.');
+  };
+
   return (
     <div className="profile-page">
-      <div className="sign-in-page">
-      <h2>Welcome Back</h2>
-      <label> Username</label>
-      <label className="inputbox-rec label-box"> user@gmail.com</label>
-
-
-      <label> Email</label>
-      <label className="inputbox-rec label-box"> user@gmail.com</label>
-      <div style={{padding: '10px'}}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-            <button className='UrlButton' onClick={() => handleButtonClick('SUBSCRIPTION')}>SUBSCRIPTION</button>
-            <button className='UrlButton' onClick={() => handleButtonClick('changePassword')}>change password</button>
-            <button className='UrlButton' onClick={() => handleButtonClick('requestDeletion')}>request deletion</button>
-            <button className='UrlButton' onClick={() => handleButtonClick('CancelSubscription')}>Cancel subscription</button>
-            <button className='UrlButton' onClick={() => handleButtonClick('Home')}>BACK TO THE HOMEPAGE</button>
+      <section className="account-panel">
+        <p className="form-kicker">Account</p>
+        <h2>Profile controls.</h2>
+        <div className="profile-fields">
+          <div className="profile-field">
+            <label>Username</label>
+            <span className="inputbox-rec label-box">user@gmail.com</span>
+          </div>
+          <div className="profile-field">
+            <label>Email</label>
+            <span className="inputbox-rec label-box">user@gmail.com</span>
+          </div>
         </div>
-
-      </div>
-      </div>
+        <div className="account-actions">
+          <button className="UrlButton" onClick={() => handleButtonClick('SUBSCRIPTION')}>Subscription</button>
+          <button className="UrlButton secondary" onClick={() => handleButtonClick('changePassword')}>Change password</button>
+          <button className="UrlButton secondary" onClick={() => handleButtonClick('requestDeletion')}>Request deletion</button>
+          <button className="UrlButton secondary" onClick={() => handleButtonClick('CancelSubscription')}>Cancel subscription</button>
+          <button className="UrlButton" onClick={() => handleButtonClick('Home')}>Back to homepage</button>
+        </div>
+      </section>
     </div>
   );
 };
