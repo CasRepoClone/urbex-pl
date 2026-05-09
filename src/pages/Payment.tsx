@@ -72,7 +72,7 @@ const Payment = () => {
               required
             />
           </div>
-          {username && <span className="tier-chip">Username: {username}</span>}
+          {username && <span className="user-chip">Username: {username}</span>}
           <button className="UrlButton" type="submit" disabled={loading}>
             {loading ? 'Processing...' : 'Checkout'}
           </button>

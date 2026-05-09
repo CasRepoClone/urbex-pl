@@ -201,7 +201,8 @@ a {
   text-decoration: none;
 }
 
-.tier-chip {
+.tier-chip,
+.user-chip {
   display: inline-flex;
   width: fit-content;
   align-items: center;

@@ -15,6 +15,10 @@ import { AuthProvider } from './security/AuthContext';
 import AuthenticatedRoute from './security/AuthenticatedRoute';
 import './styles/App.scss';
 
+const authenticated = (element: React.ReactNode) => (
+  <AuthenticatedRoute>{element}</AuthenticatedRoute>
+);
+
 const App: React.FC = () => {
   return (
     <AuthProvider>
@@ -27,30 +31,9 @@ const App: React.FC = () => {
             <Route path="/login" element={<SignIn />} />
             <Route path="/about" element={<About />} />
             <Route path="/data-policy" element={<DataPolicy />} />
-            <Route
-              path="/profile"
-              element={
-                <AuthenticatedRoute>
-                  <ProfilePage />
-                </AuthenticatedRoute>
-              }
-            />
-            <Route
-              path="/payment"
-              element={
-                <AuthenticatedRoute>
-                  <Payment />
-                </AuthenticatedRoute>
-              }
-            />
-            <Route
-              path="/subscribe"
-              element={
-                <AuthenticatedRoute>
-                  <Subscriptions />
-                </AuthenticatedRoute>
-              }
-            />
+            <Route path="/profile" element={authenticated(<ProfilePage />)} />
+            <Route path="/payment" element={authenticated(<Payment />)} />
+            <Route path="/subscribe" element={authenticated(<Subscriptions />)} />
           </Routes>
         </main>
         <Footer />

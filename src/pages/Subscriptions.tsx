@@ -72,7 +72,7 @@ const Subscriptions = () => {
         <section className="subscription-panel">
           <p className="form-kicker">Access tiers</p>
           <h1>Choose your field kit.</h1>
-          {username && <span className="tier-chip" aria-label="Signed-in username">Username: {username}</span>}
+          {username && <span className="user-chip">Username: {username}</span>}
           <form>
             <div className="subscription-grid">
               <article className="subscription-card">
